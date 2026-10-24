@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Zegar Światowy (Baza UTC)</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+  <div class="app-container">
+    <!-- Header -->
+    <header class="app-header">
+      <div class="logo-area">
+        <div class="logo-icon">🌐</div>
+        <div>
+          <h1>Zegar Światowy</h1>
+          <p class="subtitle">Główny punkt odniesienia: <strong>UTC (Coordinated Universal Time)</strong></p>
+        </div>
+      </div>
+
+      <div class="header-controls">
+        <div class="toggle-group" id="format-toggle" title="Format czasu">
+          <button type="button" class="btn-toggle active" data-format="24h">24h</button>
+          <button type="button" class="btn-toggle" data-format="12h">12h</button>
+        </div>
+      </div>
+    </header>
+
+    <!-- Main UTC Showcase -->
+    <section class="utc-hero-section">
+      <div class="utc-card">
+        <div class="utc-badge-row">
+          <span class="badge primary-badge">
+            <span class="pulse-dot"></span> BAZOWY CZAS ŚWIATOWY
+          </span>
+          <span class="badge offset-badge">UTC ±00:00</span>
+          <span class="badge live-badge" id="live-indicator">● LIVE</span>
+        </div>
+
+        <div class="utc-content">
+          <div class="utc-time-display" id="utc-clock">00:00:00</div>
+          <div class="utc-date-display" id="utc-date">Ładowanie daty...</div>
+        </div>
+
+        <div class="utc-footer">
+          <div class="day-progress-container">
+            <div class="day-progress-label">
+              <span>Postęp doby UTC:</span>
+              <span id="utc-day-percent">0%</span>
+            </div>
+            <div class="progress-bar">
+              <div class="progress-fill" id="utc-progress-fill"></div>
+            </div>
+          </div>
+          <div class="day-night-icon" id="utc-daynight-icon" title="Pora doby UTC">☀️</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Toolbar: Search / Add City / Time Scrubber -->
+    <section class="toolbar-section">
+      <div class="search-and-add">
+        <div class="select-wrapper">
+          <select id="city-select">
+            <option value="" disabled selected>➕ Dodaj strefę / miasto do listy...</option>
+            <!-- Opcje generowane dynamicznie w JS -->
+          </select>
+        </div>
+        <button id="add-city-btn" class="btn btn-primary">Dodaj strefę</button>
+        <button id="reset-default-btn" class="btn btn-secondary" title="Przywróć domyślne miasta">Przywróć domyślne</button>
+      </div>
+
+      <!-- Quick interactive time scrubber -->
+      <div class="scrubber-card">
+        <div class="scrubber-header">
+          <label for="time-slider">
+            <strong>🕒 Symulator / Przesuwanie czasu:</strong>
+            <span id="scrubber-value-label">Czas bieżący (Tryb na żywo)</span>
+          </label>
+          <button id="reset-scrubber-btn" class="btn-small" style="display: none;">Wróć do czasu rzeczywistego</button>
+        </div>
+        <input type="range" id="time-slider" min="0" max="1439" step="1" value="0">
+        <div class="scrubber-markers">
+          <span>00:00</span>
+          <span>06:00</span>
+          <span>12:00 (Południe)</span>
+          <span>18:00</span>
+          <span>23:59</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- World Clocks Grid -->
+    <section class="clocks-section">
+      <div class="section-header">
+        <h2>Wybrane strefy czasowe</h2>
+        <span class="clocks-count" id="clocks-count">6 miast</span>
+      </div>
+
+      <div class="clocks-grid" id="clocks-grid">
+        <!-- Karty zegarów generowane w JS -->
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="app-footer">
+      <p>Czas uniwersalny (UTC) nie stosuje czasu letniego/zimowego (DST), dzięki czemu służy jako stały wzorzec dla lotnictwa, sieci i nawigacji.</p>
+    </footer>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
